@@ -1,10 +1,8 @@
-require('dotenv').config();
+
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {
-  DB_USER, DB_PASSWORD, DB_HOST,
-} = process.env;
+const {DB_USER, DB_PASSWORD, DB_HOST,} = require("./utils/config/index.js");
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -13,6 +11,20 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
+
+
+const testConectionDB = async ()=>{
+  try {
+    await sequelize.authenticate();
+    console.log('The Connection has been established successfully. ;)');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+
+testConectionDB();
+
+
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
@@ -30,10 +42,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Videogame } = sequelize.models;
+const { Videogame, Genre } = sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+Videogame.belongsToMany(Genre, { through: "genreInterm" });
+Genre.belongsToMany(Videogame, { through: "genreInterm" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
