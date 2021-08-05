@@ -5,9 +5,10 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('genre', {
-    id: {
-      type: DataTypes.UUID,
+      id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      //allowNull: true,
       primaryKey: true
     },
     name: {

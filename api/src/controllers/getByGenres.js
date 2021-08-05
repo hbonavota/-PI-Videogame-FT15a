@@ -3,14 +3,48 @@ const { v4: uuidv4 } = require('uuid');
 const { Genre} = require('../db.js')
 const {API_KEY} = require("../utils/config/index.js") 
 
-function getByGenres(req, res, next){
-    //https://api.rawg.io/api/genres?key=5c0e3ef77f9c4ae6be8a2abd71f21285
-      const BDgenres = Genre.findAll()
-      const genresListApi = axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)
-      Promise.all([BDgenres,genresListApi])
+async function getByGenres(req, res, next){
+  try {
+    const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+    let array= []
+    genresApi.data.results.map(e=>{
+      let obj = {
+        name: e.name,
+        id: e.id
+      }
+      array.push(obj);
+    })
+
+    const BDgenres = await Genre.findAll();
+    let resconcat = BDgenres.concat(array);
+   /*  resconcat.map(e =>{
+      response.push(e.name)
+    }) */
+    /* for (let i = 0; i < response.length; i++) {
+      await Genre.findOrCreate({
+        where: {name:response[i]}
+      })    
+    }
+     */
+    for (let value of resconcat) {
+      await Genre.findOrCreate({
+        where: {
+          id: value.id,
+          name:value.name, 
+        }
+      })
+    }
+    let allGenres = await Genre.findAll();
+    return res.json(allGenres);
+
+  } catch (error) {
+    next(error)
+  }
+
+/*       Promise.all([BDgenres,genresApi])
       .then((results) => {
-        const [BDgenresResults,genresListApiResults] = results;
-        const response = BDgenresResults.concat(genresListApiResults.data.results);
+        const [BDgenresResults,genresApiResults] = results;
+        const response = BDgenresResults.concat(genresApiResults.data.results);
         genresResults =[];
         response.map(items =>{
            return genresResults.push(items.name)
@@ -23,7 +57,7 @@ function getByGenres(req, res, next){
 
         res.send(BDgenres);
       })
-      .catch((error) => next(error, "este es el error:"))
+      .catch((error) => next(error, "este es el error:")) */
 }
 
 module.exports ={
