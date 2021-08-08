@@ -1,4 +1,5 @@
 const { Videogame, conn } = require('../../src/db.js');
+const { v4: uuidv4 } = require('uuid');
 const { expect } = require('chai');
 
 describe('Videogame model', () => {
@@ -15,7 +16,8 @@ describe('Videogame model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Recipe.create({ name: 'Super Mario Bros' });
+
+        Videogame.create({ name: 'Super Mario Bros', id: uuidv4() });
       });
     });
   });

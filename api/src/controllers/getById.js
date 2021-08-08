@@ -17,8 +17,9 @@ async function getById (req, res, next) {
         *Incluir los géneros asociados
     */
   try {
+    //keep the id
     const id = req.params.id;
-
+    //if the id conteins "-". it's a UUID and then search in the BD 
     if(id.includes("-")){
       await Videogame.findAll({
         where:{
@@ -31,8 +32,8 @@ async function getById (req, res, next) {
         })
       .then(response=> res.json(response))
       .catch(err =>next(err))
-
     }else{
+      //else search in API
         let resp = await axios.get(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`);
         let obj = {
           id: resp.data.id,
@@ -53,22 +54,6 @@ async function getById (req, res, next) {
   }
 }
 
-  /* function getByName ('/:name', (req, res, next){
-      const name= req.params.name
-      const { count, rows } = Videogame.findAndCountAll({
-          where: {
-            name: {
-              [type]: name
-            }
-          },
-          offset: 10,
-          limit: 15
-        });
-        console.log(count);
-        console.log("aca hago el map",rows);
-  
-  }  */
-
-  module.exports = {
-    getById
-  }
+module.exports = {
+  getById
+}
