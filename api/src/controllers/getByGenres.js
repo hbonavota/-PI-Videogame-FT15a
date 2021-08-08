@@ -5,9 +5,9 @@ const {API_KEY} = require("../utils/config/index.js")
 
 async function getByGenres(req, res, next){
   try {
-    const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
     let array= []
-    genresApi.data.results.map(e=>{
+    const genresApi = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+    await genresApi.data.results.map(e=>{
       let obj = {
         name: e.name,
         id: e.id
@@ -16,10 +16,9 @@ async function getByGenres(req, res, next){
     })
 
     const BDgenres = await Genre.findAll();
-    let resconcat = BDgenres.concat(array);
-   /*  resconcat.map(e =>{
-      response.push(e.name)
-    }) */
+    let resconcat = await BDgenres.concat(array);
+
+  
     /* for (let i = 0; i < response.length; i++) {
       await Genre.findOrCreate({
         where: {name:response[i]}
@@ -35,10 +34,10 @@ async function getByGenres(req, res, next){
       })
     }
     let allGenres = await Genre.findAll();
-    return res.json(allGenres);
+    return res.send(allGenres);
 
-  } catch (error) {
-    next(error)
+  } catch (e) {
+    console.log(e.message)
   }
 
 /*       Promise.all([BDgenres,genresApi])

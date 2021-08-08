@@ -1,12 +1,11 @@
-const { Videogame} = require('../db.js');
+const { Videogame, Genre} = require('../db')
 const { v4: uuidv4 } = require('uuid');
 const axios = require('axios');
 const {API_KEY} = require("../utils/config/index.js") 
 
-
 async function getVideogames(req, res, next) {
-    /*
-        https://api.rawg.io/api/games?key=5c0e3ef77f9c4ae6be8a2abd71f21285
+          /*
+      https://api.rawg.io/api/games?key=5c0e3ef77f9c4ae6be8a2abd71f21285
     GET /videogames:
         Obtener un listado de los videojuegos
         Debe devolver solo los datos necesarios para la ruta principal
@@ -20,80 +19,81 @@ async function getVideogames(req, res, next) {
         Si no existe ningún videojuego mostrar un mensaje adecuado
     */
   let name = req.query.name;
-  if(name){
-
-    try {
-      let byNameBD = await Videogame.findAll({
-        where:{
-          name: name
-        }
-      })
-      /* 
-      let byNameApi = ()=>{
-        let resApi= await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
-      
-        resApi.data.results.map(e =>{
-        let nuevoOBJ= {
-          name: e.name,
-          background_image: e.background_image,
-          genres: e.genres[] 
-        }
-      })
-      }
-      
-      */
-      let byNameApi = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`);
-       console.log("byNameApi",byNameApi)
-
-       
-      Promise.all([byNameBD,byNameApi.data.results])
-      .then((results) => {
-        const [byNameBDResults,byNameApiResults] = results;
-        const response = byNameBDResults.concat(byNameApiResults);
-        return res.send(response);
-        //console.log("response es ;",response);
-        return response;
-      })
-      .then((algo) =>console.log("algo es ;",algo) )
-
-/*       let mapres= response.map(obj=>{
-        let objnuevo= {
-          name: obj.name,
-          genres: obj.genres,
-          background_image: obj.background_image,
-        }
-        console.log(mapres)
-        return objnuevo;
-      })
-      res.send(objnuevo) */
-/*       .then((resu) => resu.map(obj =>{
-        let objnuevo= {
-          name: obj.name,
-          genres: obj.genres,
-          background_image: obj.background_image,
-        }
-        return objnuevo;
-      }
-        )) */
-
-    } catch (error) {
-      next(error);
-    }
-  }else{
-    const BDvideogame = await Videogame.findAll();
-    const gameListApi = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
-    Promise.all([BDvideogame,gameListApi.data.results])
-    .then((results) => {
-      const [BDvideogameResults,gameListApiResults] = results;
-  
-      //console.log("gameListApiResults: ",gameListApiResults)
-      const response = BDvideogameResults.concat(gameListApiResults);
-      
-      res.send(response);
-    })
-    .catch((error) => next(error, "este es el error:"))
-
+  let byNameApi =  async(url)=>{
+    let resp = await axios.get(`https://api.rawg.io/api/games?${url}&key=${API_KEY}`)
+    return resp.data.results.map(e =>(
+          { id: e.id,
+            name: e.name,
+            description: e.description,
+            background_image: e.background_image,
+            released: e.released,
+            rating: e.rating,
+            platforms: e.platforms.map(p => p.platform.name),
+            genres: e.genres.map(elem=> elem.name),
+          })
+    )
   }
+
+  if(name){
+      try {
+        let byNameBD = await Videogame.findAll({
+            where:{
+              name: name
+            },
+            include:{
+              model: Genre,
+              attributes:["name"]
+            }
+        })
+
+        /* let byNameApi =  async()=>{
+          let resp = await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
+          return resp.data.results.map(e =>(
+                { id: e.id,
+                  name: e.name,
+                  description: e.description,
+                  background_image: e.background_image,
+                  released: e.released,
+                  rating: e.rating,
+                  platforms: e.platforms.map(p => p.platform.name),
+                  genres: e.genres.map(elem=> elem.name),
+                })
+          )
+        } */
+        Promise.all([byNameBD,byNameApi(`search=${name}`)])
+        .then((results) => {
+          const [BDres,APIresp] = results;
+          const response = BDres.concat(APIresp);
+          return res.send(response);
+        })
+      } catch (error) {
+        next(error);
+        res.status(404).send("There arent any videogame with that name, please try again")
+      }
+    }else{
+      try {
+        const BDgames = await Videogame.findAll({
+          include:{
+            model: Genre,
+            attributes:["name"]
+          }
+        });
+        
+        //const gameApi = await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)
+        //Promise.all([BDgames,gameApi.data.results])
+        Promise.all([BDgames,byNameApi(),byNameApi(`&page=2`),byNameApi(`&page=3`),byNameApi(`&page=4`),byNameApi(`&page=5`)])
+        .then((results) => {
+          const [BDarray,api1,api2,api3,api4,api5] = results;
+          const response = BDarray.concat(api1,api2,api3,api4,api5);
+          console.log(response.length)
+          res.send(response);
+        })
+      } catch (error) {
+        next(error);
+        res.status(404).send("There arent any videogame with that name, please try again");
+      }
+
+    }
 
 }
  
