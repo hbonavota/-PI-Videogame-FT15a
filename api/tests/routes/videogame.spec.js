@@ -28,10 +28,16 @@ describe('Videogame routes', () => {
       agent.get('/genres').expect(200)
     );
     
-  });
-  describe('GET /videogame/ID', () => {
+  })
+   describe('GET /videogame/ID', () => {
     it('should get 200', () =>
     agent.get(`/videogame/${id}`).expect(200)
   );
-  });
+  }); 
+   describe('GET /videogames?name=prueba', () => {
+    it('should get 200', () =>
+    agent.get('/videogames?name=prueba').expect(200)
+    );
+  }); 
+
 });
