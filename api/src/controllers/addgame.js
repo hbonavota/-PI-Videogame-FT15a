@@ -5,66 +5,54 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op; 
 
 async function addGame(req, res, next){
-        /* POST /videogame:
-    Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
-    Crea un videojuego en la base de datos 
-    Nombre // name ok
-    Descripción//description
-    Fecha de lanzamiento // released ok
-    Rating rating ok*/ 
+    /* POST /videogame:
+        Recibe los datos recolectados desde el formulario controlado de la ruta de creación de videojuego por body
+        Crea un videojuego en la base de datos 
+            id
+            Nombre // name 
+            Descripción//description
+            Fecha de lanzamiento // released 
+            Rating rating 
+    */ 
+    
+    //i make destructuring 
     const {name, description,released, rating,parent_plaforms, genres}= req.body;
-    //const videogame= req.body;
 
     try {
-
+        //it's not possible to save any game with de same name 
         let isrepeat= await Videogame.findOne({ where: { name: name }, include: Genre })
         if(isrepeat) {
             return res.send('Sorry, That Game already exists, try with a diferent name');
         }
-        await getByGenres()
+        //charging the model genre to 
+        await getByGenres();
+        
+        //create the new videogame to make the association
         const newVideogame = await Videogame.create({
-        id: uuidv4(),
-        name,
-        description,
-        released,
-        rating,
-        parent_plaforms,
+            //use the UUID to establish the diferences entre any videogame from BD and API 
+            id: uuidv4(), 
+            name,
+            description,
+            released,
+            rating,
+            parent_plaforms,
         })
-
+        //get the correct genres that match with ID passed by req.body
         const Genres = await Genre.findAll({
             where:{
-                id:parseInt(genres)
+            id:parseInt(genres)
             }
-            /*where: {
-                id:{
-                    [Op.in]: genres
-                }
-            } 
-            */
         });
-
+        //add the genre in the BD model
         await newVideogame.addGenre(Genres);
-
+        
+        //return the complete game  with genre
         let game = await Videogame.findOne({ where: { name: name }, include: [Genre] })
-
         return res.json(game)
 
     } catch (error) {
         next(error);
     }
-    
-/*     return Videogame.create({
-        id: uuidv4(),
-        name,
-        description,
-        released,
-        rating,
-        parent_plaforms,
-        genres
-        
-    })
-    .then((newVideogame) => res.send(newVideogame))
-    .catch((error) => next(error, "este es el error:")) */
 }
 
 module.exports = {
