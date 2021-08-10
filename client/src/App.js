@@ -14,12 +14,12 @@ function App() {
       <Switch>
         <Route exact path='/' component={LandingPage}></Route>
         <Route exact path='/Home' component={Home}></Route>
-        <Route exact path='/videogame/create' component={CreateGame}></Route>
+        <Route exact path='/create' component={CreateGame}></Route>
         <Route exact path='/videogame/:id' component={GameDetail}></Route>
         <Route path='/*' component={Error}></Route>
       </Switch>
     </div>
   )
-};
+}
 
 export default App;

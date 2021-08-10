@@ -1,8 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
 const { Videogame, Genre} = require('../db')
 const{getByGenres} = require("./getByGenres")
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op; 
+
 
 async function addGame(req, res, next){
     /* POST /videogame:
@@ -16,7 +15,7 @@ async function addGame(req, res, next){
     */ 
     
     //i make destructuring 
-    const {name, description,released, rating,parent_plaforms, genres}= req.body;
+    const {name, description,released, rating,img,platforms, genres}= req.body;
 
     try {
         //it's not possible to save any game with de same name 
@@ -35,7 +34,8 @@ async function addGame(req, res, next){
             description,
             released,
             rating,
-            parent_plaforms,
+            img,
+            platforms,
         })
         //get the correct genres that match with ID passed by req.body
         const Genres = await Genre.findAll({

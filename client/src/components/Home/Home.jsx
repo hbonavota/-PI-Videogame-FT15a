@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllGames } from '../../actions/getVideogames';
 import Game from '../Game/Game'
 import NavBar from '../NavBar/NavBar';
-import style from '../Home/Home.module.css'
 import getGenres from '../../actions/getGenres';
 import Orderby from '../Orders/Orders';
 import FilterOptions from '../Filters/Filters';
 import { filterByGenres } from '../../actions/order&filters';
 import { loading } from '../../actions/getByName';
+import style from '../Home/Home.module.css'
 
 export default function Videogames() {
     const showGames = useSelector(state => state.filtered)
@@ -83,14 +83,14 @@ export default function Videogames() {
                         <div className={style.btnC}>
                             {page !== 1 ?
                                 <button className={style.btn} onClick={(e) => handlePage(e)} name="prev">
-                                    prev
+                                    Prev
                                 </button>
                                 : null
                             }
                             <p className={style.page}>{page}</p>
                             {page < 7 ?
                                 <button className={style.btn} onClick={(e) => handlePage(e)} name="next">
-                                    next
+                                    Next
                                 </button>
                                 : null
                             }
@@ -102,7 +102,7 @@ export default function Videogames() {
                         !stateLoading && showGames.length > 0 && paginate(showGames, page).map(vg => {
                             return <div key={vg.id}>
                                 <Link to={`/videogame/${vg.id}`}>
-                                    <Game id={vg.id} img={vg.background_image} name={vg.name} genres={vg.genres} />
+                                    <Game id={vg.id} img={vg.img} name={vg.name} genres={vg.genres} />
                                 </Link>
                             </div>
                         })

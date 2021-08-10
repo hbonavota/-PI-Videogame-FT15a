@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    background_image: {
+    img: {
       type: DataTypes.STRING,
       validate: {
           isUrl: true
@@ -31,8 +31,8 @@ module.exports = (sequelize) => {
     rating:{
       type: DataTypes.STRING,
     },
-    parent_plaforms: {
-      type: DataTypes.STRING,
+    platforms: {
+      type: DataTypes.STRING
       
     }
 

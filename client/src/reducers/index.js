@@ -46,10 +46,18 @@ function rootReducer(state = initialState, action) {
                 genres: action.payload
             }
         case GET_PLATFORMS:
+/*             let stateVGames = state.videogames;
+            let arrayPlatforms = stateVGames?.map((e)=>{
+                return (e.platforms)
+            })
             return {
                 ...state,
+                platforms: arrayPlatforms
+            } */
+             return {
+                ...state,
                 platforms: action.payload
-            }
+            } 
         case ORDER_BY:
             return {
                 ...state,

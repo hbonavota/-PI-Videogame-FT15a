@@ -11,7 +11,6 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-
 const testConectionDB = async ()=>{
   try {
     await sequelize.authenticate();
@@ -20,10 +19,7 @@ const testConectionDB = async ()=>{
     console.error('Unable to connect to the database:', error);
   }
 }
-
 testConectionDB();
-
-
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))

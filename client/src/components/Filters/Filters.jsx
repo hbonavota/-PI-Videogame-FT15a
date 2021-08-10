@@ -7,9 +7,12 @@ export default function FilterOptions() {
     const dispatch = useDispatch();
     const handleCreated = (e) => {
         switch (e.target.value) {
-            case 'By Favi-Com': dispatch(filterBy(vg => vg.id.includes("-") === false)); break
-            case 'By you': dispatch(filterBy(vg => vg.id.includes("-") === true)); break
-            default: dispatch(filterBy(vg => vg.hasOwnProperty('created')))
+            case 'FromAPI': 
+            
+                dispatch(filterBy(elem =>elem.id.length < 8)); break
+            case 'CreatedInBD':
+                dispatch(filterBy(elem => elem.id.length > 8 )); break
+            default: dispatch(filterBy(vg => vg.hasOwnProperty('id')))
         }
     };
 
@@ -19,8 +22,8 @@ export default function FilterOptions() {
             <form >
                 <select className={style.box_select} name="Created" onChange={handleCreated}>
                     <option value="All">All</option>
-                    <option value="By Favi-Com">By Favi-Com</option>
-                    <option value="By you">By you</option>
+                    <option value="FromAPI">From API</option>
+                    <option value="CreatedInBD"> In BaseData</option>
                 </select>
             </form>
         </div>

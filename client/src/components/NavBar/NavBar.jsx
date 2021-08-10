@@ -39,7 +39,7 @@ export default function NavBar() {
           </input>
           <button onClick={(e) => handleSubmit(e)} >🔍️</button>
         </form>
-        <Link to="/videogame/create"><span>Create Game</span></Link>
+        <Link to="/create"><span>Create Game</span></Link>
       </nav>
     </div>
   )

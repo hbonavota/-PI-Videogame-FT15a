@@ -70,12 +70,12 @@
 }
 
 .btn {
-    width: 55px;
-    height: 30px;
+    width: 65px;
+    height: 45px;
     margin: 20px;
     background-color: transparent;
     border-radius: 20px;
-    color: #d7e3fc;
+    color: white;
 }
 
 .btn:hover {
@@ -84,8 +84,8 @@
 }
 
 .page {
-    font-size: 20px;
-    color: #d7e3fc;
+    font-size: 26px;
+    color: white;
 }
 
 .eliminate {
