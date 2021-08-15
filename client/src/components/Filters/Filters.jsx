@@ -8,7 +8,6 @@ export default function FilterOptions() {
     const handleCreated = (e) => {
         switch (e.target.value) {
             case 'FromAPI': 
-            
                 dispatch(filterBy(elem =>elem.id.length < 8)); break
             case 'CreatedInBD':
                 dispatch(filterBy(elem => elem.id.length > 8 )); break
@@ -28,4 +27,4 @@ export default function FilterOptions() {
             </form>
         </div>
     )
-};
+}

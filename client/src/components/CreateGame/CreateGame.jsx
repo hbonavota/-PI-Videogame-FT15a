@@ -12,8 +12,8 @@ export default function CreateGame() {
     const stateG = useSelector(state => state.genres)
     const dispatch = useDispatch()
     const { push } = useHistory()
-    const urlValidate = /(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/;
-
+/*     const urlValidate = /(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/; */
+const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/;
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
@@ -25,7 +25,7 @@ export default function CreateGame() {
     const [rating, setRating] = useState(0);
     const [released, setreleased] = useState('');
     const [platforms, setPlatforms] = useState("");
-/*     const [platforms, setPlatforms] = useState([]); */
+    /* const [platforms, setPlatforms] = useState([]); */
     const [genres, setGenres] = useState([]);
 
     function handleSubmit(e) {
@@ -52,10 +52,8 @@ export default function CreateGame() {
             case 'img': setImg(e.target.value); break;
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
-            case 'platforms': 
-            console.log("e.e.target.value:",e.target.value)
-            setPlatforms([...platforms, e.target.value].join()); break;
-/*             case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
+            case 'platforms': setPlatforms(platforms.concat(" ",e.target.value)); break;
+/*          case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
             case 'genres': setGenres([...genres, e.target.value]); break;
             default: break
         }
