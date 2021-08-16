@@ -20,8 +20,7 @@ export default function GameDetail() {
                             <h1 className={style.title}>Videogame: {stateD.name}</h1>
                             <img className={style.img} src={stateD.img} alt="Not found" />
                             <h6 className={style.des}>{ /* stateD.description.includes("<")? stateD.description.replace(/<[^>]+>/g,'') : stateD.description */
-                                
-                            /*  stateD.description.replace(/<[^>]+>/g, '')  */}</h6>
+                              stateD.description.replace(/<[^>]+>/g, '')  }</h6>
                             <div className={style.cp}>
                                 <h4 className={style.text}>
                                     <span className={style.tt}>◽ Rating:  </span>{stateD.rating}
