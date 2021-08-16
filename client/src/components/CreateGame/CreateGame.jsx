@@ -5,15 +5,14 @@ import addGame from '../../actions/addGame'
 import getGenres from '../../actions/getGenres'
 import getPlatforms from '../../actions/getPlatforms'
 import style from './CreateGame.module.css'
-//import imgnav from '../CreateGame/littlenav.png'
+import logo from '../NavBar/pic.png'
 
 export default function CreateGame() {
     const stateP = useSelector(state => state.platforms)
     const stateG = useSelector(state => state.genres)
     const dispatch = useDispatch()
     const { push } = useHistory()
-/*     const urlValidate = /(https?:\/\/)?([\w\-])+\.{1}([a-zA-Z]{2,63})([\/\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/; */
-const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/;
+    const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/;
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
@@ -25,7 +24,6 @@ const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^
     const [rating, setRating] = useState(0);
     const [released, setreleased] = useState('');
     const [platforms, setPlatforms] = useState("");
-    /* const [platforms, setPlatforms] = useState([]); */
     const [genres, setGenres] = useState([]);
 
     function handleSubmit(e) {
@@ -54,49 +52,54 @@ const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^
             case 'released': setreleased(e.target.value); break;
             case 'platforms': setPlatforms(platforms.concat(" ",e.target.value)); break;
 /*          case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
-            case 'genres': setGenres([...genres, e.target.value]); break;
+            case 'genres': 
+            setGenres([...genres, e.target.value]);
+            console.log(genres)
+            
+            break;
             default: break
         }
-    };
+    }
 
     return (
         <div className={style.bigDiv}>
-{/*             <img src={imgnav} alt="not found" className={style.littlenav} /> */}
+            <div className={style.searchBar}>
+            <img src={logo} alt="logo" width="64px" height="60px" />
+            </div>
             <div className={style.global}>
                 <div className={`${style.container} ${style.center}`}>
-                    <form onSubmit={(e) => handleSubmit(e)} className={style.form} autocomplete="off">
-                        <div className={style.subtitle}>Let's create your videogame!</div>
+                    <form onSubmit={(e) => handleSubmit(e)} className={style.form} autoComplete="off">
+                        <div className={style.subtitle}>¡Let's create your videogame!</div>
                         <div className={`${style.input_container} ${style.ic1}`}>
-                            <input className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Name" />
+                            <input className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Write a name" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`} >
-                            <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Description" />
+                            <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Short description" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
-                            <input className={style.input} type="text" name="img" value={img} required onChange={handleChange} placeholder="Url/img..." />
+                            <input className={style.input} type="text" name="img" value={img} required onChange={handleChange} placeholder="Image url..." />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
                             <input className={style.input} type="date" name="released" value={released} required onChange={handleChange} placeholder="Release Date" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
-                            <input className={style.input} type="number" name="rating" value={rating} max="5" min="1" required onChange={handleChange} placeholder="Rating" />
+                            <input className={style.input} type="number" name="rating" value={rating} max="5" min="1" required onChange={handleChange} placeholder="Rating from 1 to 5" />
                         </div>
                     </form>
                 </div >
                 <div className={`${style.inputCheck} ${style.al} ${style.left}`}>
                     <form>
-                        <h4 className={style.subtitlePlat}>Platforms</h4>
-                        {stateP.map((e) => {
-                            console.log("e",e)
+                        <h4 className={style.subtitlePlat}> Select Platforms</h4>
+                        {stateP.map((elem) => {
                             return (
-                                <div key={e.ID}>
+                                <div key={elem.id} className={style.subtitlePlat}>
                                     <input
                                         type='checkbox'
                                         name='platforms'
-                                        value={e}
+                                        value={elem}
                                         onChange={(e) => { handleChange(e) }}
                                     />
-                                    <label name={e}>{e}</label>
+                                    <label name={elem}>{elem}</label>
                                 </div>
                             )
                         })}
@@ -104,29 +107,29 @@ const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^
                 </div>
                 <div className={`${style.inputCheck} ${style.al} ${style.right}`}>
                     <form>
-                        <h4 className={style.subtitleGenre}>Genres</h4>
-                        {stateG.map((e) => {
+                        <h4 className={style.subtitleGenre}>Select Genres</h4>
+                        {stateG.map((el) => {
                             return (
-                                <div key={e.id}>
+                                <div className={style.subtitlePlat} key={el.id}>
                                     <input
                                         type='checkbox'
                                         name='genres'
-                                        value={e.id}
-                                        onChange={(e) => { handleChange(e) }}
+                                        value={el.id}
+                                        onChange={(ele) => { handleChange(ele) }}
                                     />
-                                    <label name={e}>{e.name}</label>
+                                    <label name={el}>{el.name}</label>
                                 </div>
                             )
                         })}
                     </form>
                 </div>
-            </div>
                 <input className={style.submit} onClick={handleSubmit} type="submit" value="Create game" />
+            </div>
             <Link to="/Home">
                 <button className={style.back}>
-                    back home
+                    Back Home
                 </button>
             </Link>
         </div >
     );
-};
+}

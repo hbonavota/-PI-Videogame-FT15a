@@ -30,7 +30,8 @@ async function getById (req, res, next) {
           attributes:["name"]
         }
         })
-      .then(response=> res.json(response))
+      .then(response=> response[0])
+      .then(response => res.json(response))
       .catch(err =>next(err))
     }else{
       //else search in API
@@ -39,7 +40,7 @@ async function getById (req, res, next) {
           id: resp.data.id,
           name: resp.data.name,
           description: resp.data.description,
-          background_image: resp.data.background_image,
+          img: resp.data.background_image,
           released: resp.data.released,
           rating: resp.data.rating,
           platforms: resp.data.platforms.map(p => p.platform.name),

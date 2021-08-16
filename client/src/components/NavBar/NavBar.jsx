@@ -27,7 +27,7 @@ export default function NavBar() {
       </div>
       <nav>
         <Link to="/Home"><span>Home</span></Link>
-        <form /* className={styles.searchBar} */>
+        <form >
           <input
             className={styles.inputSearch}
             type="text"
@@ -37,7 +37,7 @@ export default function NavBar() {
             value={name}
             onChange={(e) => handleChange(e)}  >
           </input>
-          <button onClick={(e) => handleSubmit(e)} >🔍️</button>
+          <button className={styles.lupa} onClick={(e) => handleSubmit(e)} >🔍️</button>
         </form>
         <Link to="/create"><span>Create Game</span></Link>
       </nav>

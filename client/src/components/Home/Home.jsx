@@ -11,9 +11,9 @@ import { filterByGenres } from '../../actions/order&filters';
 import { loading } from '../../actions/getByName';
 import style from '../Home/Home.module.css'
 
-export default function Videogames() {
+export default function Home() {
     const showGames = useSelector(state => state.filtered)
-    const state = useSelector(state => state.videogames)
+    const stateV = useSelector(state => state.videogames)
     const stateLoading = useSelector(state => state.loading)
     const genresState = useSelector(state => state.genres)
     const dispatch = useDispatch()
@@ -29,7 +29,7 @@ export default function Videogames() {
 
     const handleGenres = (e) => {
         setPage(1)
-        dispatch(filterByGenres(state, e.target.value))
+        dispatch(filterByGenres(stateV, e.target.value))
     };
 
     const handleEliminateFilters = () => {
@@ -70,7 +70,7 @@ export default function Videogames() {
                                 <select className={style.box_select} name="Genres" onChange={handleGenres} >
                                     <option key={'All'} value={'All'}>All</option>
                                     {genresState.map((e) => {
-                                        return <option key={e.ID} value={e.name}>{e.name}</option>
+                                        return <option key={e.id} value={e.name}>{e.name}</option>
                                     })}
                                 </select>
                             </form>
@@ -117,4 +117,4 @@ export default function Videogames() {
             </div>
         </div>
     )
-};
+}

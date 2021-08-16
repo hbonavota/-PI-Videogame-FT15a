@@ -8,7 +8,7 @@ export default function FilterOptions() {
     const handleCreated = (e) => {
         switch (e.target.value) {
             case 'FromAPI': 
-                dispatch(filterBy(elem =>elem.id.length < 8)); break
+                dispatch(filterBy(elem =>Number.isInteger(elem.id))); break
             case 'CreatedInBD':
                 dispatch(filterBy(elem => elem.id.length > 8 )); break
             default: dispatch(filterBy(vg => vg.hasOwnProperty('id')))
@@ -22,7 +22,7 @@ export default function FilterOptions() {
                 <select className={style.box_select} name="Created" onChange={handleCreated}>
                     <option value="All">All</option>
                     <option value="FromAPI">From API</option>
-                    <option value="CreatedInBD"> In BaseData</option>
+                    <option value="CreatedInBD"> From dataBase</option>
                 </select>
             </form>
         </div>

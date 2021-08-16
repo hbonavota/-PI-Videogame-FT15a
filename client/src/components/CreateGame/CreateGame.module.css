@@ -8,12 +8,12 @@
 }
 
 .form {
-    background-color: #15172b;
+    background-color: #15172bcb;
     border-radius: 20px;
     box-sizing: border-box;
     height: 500px;
     padding: 20px;
-    width: 320px;
+    width: 480px;
 }
 
 .title {
@@ -27,7 +27,7 @@
 .subtitle {
     color: #eee;
     font-family: sans-serif;
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 600;
     margin-top: 10px;
     align-content: center;
@@ -48,6 +48,10 @@
 }
 
 .subtitlePlat {
+    font-family: sans-serif;
+/*     color: #eee; */
+    background-color: #15172b49;
+    border-radius: 20;
     color: #eee;
     display: flex;
     font-size: 16px;
@@ -78,10 +82,10 @@
 
 .input {
     background-color: #303245;
-    border-radius: 12px;
+    border-radius: 20px;
     border: 0;
     box-sizing: border-box;
-    color: #eee;
+    color: rgb(184, 180, 180);
     font-size: 18px;
     height: 100%;
     outline: 0;
@@ -91,7 +95,7 @@
 
 .submit {
     background-color: #15172b;
-    border-radius: 12px;
+    border-radius: 20px;
     border: 0;
     box-sizing: unset;
     color: #eee;
@@ -101,8 +105,7 @@
     margin-top: 65px;
     margin-left: 406px;
     outline: 0;
-    text-align: center;
-    width: 10%;
+    width: 12%;
 }
 
 .submit:hover {
@@ -127,9 +130,16 @@
 
 .global {
     /* background-color: black; */
-    background-image: url('https://images.unsplash.com/photo-1498736297812-3a08021f206f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1957&q=80');
+    
+    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     padding-top: 45px;
+
 }
+/* padding-top: 45px; */
 
 .left {
     float: left;
@@ -163,9 +173,9 @@
     border-radius: 12px;
     border: 0;
     box-sizing: unset;
-    color: rgb(52, 58, 64);;
+    color: #eee;
     font-size: 15px;
-    height: 30px;
+    height: 50px;
     margin-bottom: 8px;
     margin-top: 10px;
     outline: 0;
@@ -175,6 +185,16 @@
 }
 
 .back:hover {
-    background-color: rgb(52, 58, 64, 0.1);
+    background-color: rgba(136, 139, 141, 0.1);
     color: rgb(52, 58, 64);
+}
+
+.searchBar{
+    margin: 0px auto 0;
+    margin-bottom:25px;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(52, 73, 94, 0.89);
+    border-radius: 8px;
+    font-size: 0;
 }

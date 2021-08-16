@@ -40,7 +40,8 @@ async function addGame(req, res, next){
         //get the correct genres that match with ID passed by req.body
         const Genres = await Genre.findAll({
             where:{
-            id:parseInt(genres)
+                id: genres
+/*             id:parseInt(genres) */
             }
         });
         //add the genre in the BD model

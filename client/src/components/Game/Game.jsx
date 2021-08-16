@@ -7,6 +7,7 @@ export default function Game({ id, img, name, genres }) {
             <h2 className={style.title}>{name}</h2>
             <img key={id} src={img} alt="Not found" className={style.image} />
             <h5>{genres.join(', ')}</h5>
+
         </div>
     );
-};
+}
