@@ -1,10 +1,10 @@
 const { DataTypes } = require('sequelize');
 
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+// Export a function that defines the model
+// Then, injects the connection to sequelize.
 
 module.exports = (sequelize) => {
-  // I define the model with name "videogame"
+  // defines the "videogame" models
   sequelize.define('videogame', {
     id: {
       type: DataTypes.UUID,
@@ -22,22 +22,22 @@ module.exports = (sequelize) => {
     img: {
       type: DataTypes.STRING,
       validate: {
-          isUrl: true
+        isUrl: true
       }
     },
-    released:{
+    released: {
       type: DataTypes.STRING,
     },
-    rating:{
+    rating: {
       type: DataTypes.STRING,
     },
     platforms: {
       type: DataTypes.STRING
-      
+
     }
 
   },
-  {
-    timestamps: false
-  });
+    {
+      timestamps: false
+    });
 };

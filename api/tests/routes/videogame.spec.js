@@ -15,10 +15,11 @@ describe('Videogame routes', () => {
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
+  //force indicates that the table is dropped every time the server is restarted
   beforeEach(() => Videogame.sync({ force: true })
     .then(() => Videogame.create(videogame)));
   describe('GET /videogames', () => {
-    it('should get 200', () =>
+    it('should get status 200', () =>
       agent.get('/videogames').expect(200)
     );
     

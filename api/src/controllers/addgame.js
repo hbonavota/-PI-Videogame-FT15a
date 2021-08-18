@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const { Videogame, Genre} = require('../db')
-const{getByGenres} = require("./getByGenres")
+const{getGenres} = require("./getGenres")
 
 
 async function addGame(req, res, next){
@@ -14,7 +14,7 @@ async function addGame(req, res, next){
             Rating rating 
     */ 
     
-    //i make destructuring 
+    //make destructuring 
     const {name, description,released, rating,img,platforms, genres}= req.body;
 
     try {
@@ -23,8 +23,8 @@ async function addGame(req, res, next){
         if(isrepeat) {
             return res.send('Sorry, That Game already exists, try with a diferent name');
         }
-        //charging the model genre to 
-        await getByGenres();
+        //charging the model genre before the assotiation
+        await getGenres();
         
         //create the new videogame to make the association
         const newVideogame = await Videogame.create({
@@ -44,7 +44,7 @@ async function addGame(req, res, next){
 /*             id:parseInt(genres) */
             }
         });
-        //add the genre in the BD model
+        //add the genres in the BD model
         await newVideogame.addGenre(Genres);
         
         //return the complete game  with genre

@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const {DB_USER, DB_PASSWORD, DB_HOST,} = require("./utils/config/index.js");
+const { DB_USER, DB_PASSWORD, DB_HOST } = require("./utils/config/index.js");
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -11,7 +11,8 @@ const basename = path.basename(__filename);
 
 const modelDefiners = [];
 
-const testConectionDB = async ()=>{
+//function to test the connection between sequelize and the database
+const testConectionDB = async () => {
   try {
     await sequelize.authenticate();
     console.log('The Connection has been established successfully. ;)');
@@ -21,27 +22,26 @@ const testConectionDB = async ()=>{
 }
 testConectionDB();
 
-// Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
+// read all the files in the Models folder, require them and add them to the modelDefiners array
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
   });
 
-// Injectamos la conexion (sequelize) a todos los modelos
+// inject the connection (sequelize) to all models
 modelDefiners.forEach(model => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
+// In sequelize.models are all imported models as properties
+// To relate them we do a destructuring
 const { Videogame, Genre } = sequelize.models;
 
 
-// Aca vendrian las relaciones
-// Product.hasMany(Reviews);
+// relations, where "genreInterm" is the middle table
 Videogame.belongsToMany(Genre, { through: "genreInterm", timestamps: false });
 Genre.belongsToMany(Videogame, { through: "genreInterm", timestamps: false });
 

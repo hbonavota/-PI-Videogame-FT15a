@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {getById} = require('../controllers/getById.js')
+const { getById } = require('../controllers/getById.js')
 const router = Router();
 
 router.get('/:id', getById)

@@ -23,7 +23,9 @@ export default function NavBar() {
   return (
     <div className={styles.container}>
       <div className={styles.searchBar}>
-      <img src={logo} alt="logo" width="64px" height="60px" />
+        <Link to="/"><span>
+          <img src={logo} alt="logo" width="64px" height="60px" />
+        </span></Link>
       </div>
       <nav>
         <Link to="/Home"><span>Home</span></Link>

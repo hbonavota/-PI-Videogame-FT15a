@@ -10,7 +10,7 @@ export function filterBy(params) {
 
 export function filterByGenres(state, value) {
     if (value !== 'All') {
-        let games = state.filter(vg => vg.genres.includes(value))
+        let games = state.filter(vg => vg.genres.map((e)=> e.name).includes(value))
         return { type: FILTER_BY_GENRE, payload: games }
     }
     else {

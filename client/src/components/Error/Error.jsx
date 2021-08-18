@@ -9,4 +9,4 @@ export default function Error() {
             <Link to="/Home"><button className={style.btn}>Click here for go back</button></Link>
         </div>
     )
-};
+}

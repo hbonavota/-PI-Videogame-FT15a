@@ -22,6 +22,7 @@ const { conn } = require('./src/db.js');
 const {DB_PORT} = require("./src/utils/config/index.js") 
 
 // Syncing all the models at once.
+//"force: true" indicates that the table is dropped every time the server is restarted
 conn.sync({ force: true }).then(() => {
   server.listen(DB_PORT, () => {
     console.log(`%s listening at ${DB_PORT}`); // eslint-disable-line no-console

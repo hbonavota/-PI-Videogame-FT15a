@@ -4,7 +4,7 @@ import { orderBy } from '../../actions/order&filters'
 import style from '../Orders/Orders.module.css'
 
 export default function Orderby() {
-    
+
     const dispatch = useDispatch();
 
     const handleOrder = (e) => {
@@ -34,4 +34,4 @@ export default function Orderby() {
             </form>
         </div>
     )
-};
+}

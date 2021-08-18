@@ -8,6 +8,7 @@ import store from './store/index';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  // wrap everything in the provider so that the store can be accessed
   <Provider store={store} >
     <BrowserRouter>
       <App />

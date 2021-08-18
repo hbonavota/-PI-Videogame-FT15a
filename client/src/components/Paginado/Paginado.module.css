@@ -1,0 +1,13 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    transition: transform 250ms;
+    margin-bottom: 10px;
+}
+.pagination a{
+    margin-right: 6px;
+}

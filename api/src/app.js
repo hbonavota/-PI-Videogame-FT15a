@@ -20,10 +20,11 @@ server.use(setHeaders);
 
 server.use('/', routes);
 
-server.get('/', (req,res)=>{
-    res.send("Página de inicio");
-  })
-// Error catching endware.
+server.get('/', (req, res) => {
+  res.send("Página de inicio");
+})
 
+// Error catching endware.
 server.use(errorHandler);
+
 module.exports = server;

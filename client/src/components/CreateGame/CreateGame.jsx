@@ -50,13 +50,13 @@ export default function CreateGame() {
             case 'img': setImg(e.target.value); break;
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
-            case 'platforms': setPlatforms(platforms.concat(" ",e.target.value)); break;
-/*          case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
-            case 'genres': 
-            setGenres([...genres, e.target.value]);
-            console.log(genres)
-            
-            break;
+            case 'platforms': setPlatforms(platforms.concat(" ", e.target.value)); break;
+            /*          case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
+            case 'genres':
+                setGenres([...genres, e.target.value]);
+                console.log(genres)
+
+                break;
             default: break
         }
     }
@@ -64,7 +64,7 @@ export default function CreateGame() {
     return (
         <div className={style.bigDiv}>
             <div className={style.searchBar}>
-            <img src={logo} alt="logo" width="64px" height="60px" />
+                <img src={logo} alt="logo" width="64px" height="60px" />
             </div>
             <div className={style.global}>
                 <div className={`${style.container} ${style.center}`}>

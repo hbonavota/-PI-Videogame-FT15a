@@ -6,7 +6,7 @@ export default function Game({ id, img, name, genres }) {
         <div className={style.card}>
             <h2 className={style.title}>{name}</h2>
             <img key={id} src={img} alt="Not found" className={style.image} />
-            <h5>{genres.join(', ')}</h5>
+            <h5>{genres.map((e => e.name)).join(', ')}</h5>
 
         </div>
     );

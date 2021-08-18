@@ -13,4 +13,4 @@ export default function addGame(body) {
                 dispatch(add(videogame.data))
             })
     }
-};
+}

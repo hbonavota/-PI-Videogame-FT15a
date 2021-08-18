@@ -1,13 +1,13 @@
 import { GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_BY_NAME, ADD_GAME, GET_GENRES, GET_PLATFORMS, ORDER_BY, FILTER_BY, FILTER_BY_GENRE, SET_LOADING } from '../actions/constants'
 
 const initialState = {
-    videogames: [],
-    videogame: {},
-    detail: {},
-    genres: [],
-    filtered: [],
-    platforms: [],
-    loading: true
+    videogames: [], // for the proyect is require that "videogames" contains onehundred games from API
+    videogame: {}, //contains "addGame"
+    detail: {}, //contains component GameDetail. the Search in the all games from API
+    genres: [], // contains all the genres From API
+    filtered: [], // constains array for make the filters
+    platforms: [], //contains all platforms by API
+    loading: true //  boolean for show a image when is loading. Set first : true
 };
 
 function rootReducer(state = initialState, action) {
@@ -46,10 +46,10 @@ function rootReducer(state = initialState, action) {
                 genres: action.payload
             }
         case GET_PLATFORMS:
-             return {
+            return {
                 ...state,
                 platforms: action.payload
-            } 
+            }
         case ORDER_BY:
             return {
                 ...state,
@@ -70,6 +70,6 @@ function rootReducer(state = initialState, action) {
         default:
             return state;
     }
-};
+}
 
 export default rootReducer;

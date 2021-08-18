@@ -7,10 +7,10 @@ export default function FilterOptions() {
     const dispatch = useDispatch();
     const handleCreated = (e) => {
         switch (e.target.value) {
-            case 'FromAPI': 
-                dispatch(filterBy(elem =>Number.isInteger(elem.id))); break
+            case 'FromAPI':
+                dispatch(filterBy(elem => Number.isInteger(elem.id))); break
             case 'CreatedInBD':
-                dispatch(filterBy(elem => elem.id.length > 8 )); break
+                dispatch(filterBy(elem => elem.id.length > 8)); break
             default: dispatch(filterBy(vg => vg.hasOwnProperty('id')))
         }
     };

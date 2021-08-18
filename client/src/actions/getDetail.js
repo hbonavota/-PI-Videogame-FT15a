@@ -20,7 +20,7 @@ export const getGameById = (id) => {
                     released: videogame.data.released,
                     rating: videogame.data.rating,
                     platforms: videogame.data.platforms,
-                    genres: videogame.data.genres.map(e=> e.name+ ",")
+                    genres: videogame.data.genres.map(e=> e.name+ " ,")
                 }
                 return dispatch(getDetail(obj))
             }else{
