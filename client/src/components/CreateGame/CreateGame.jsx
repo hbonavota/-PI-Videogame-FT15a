@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { getAllGames } from '../../actions/getVideogames';
 import addGame from '../../actions/addGame'
 import getGenres from '../../actions/getGenres'
 import getPlatforms from '../../actions/getPlatforms'
@@ -39,6 +40,7 @@ export default function CreateGame() {
             let body = { name, description, img, released, rating, platforms, genres }
             dispatch(addGame(body))
             alert('Your videogame was created!')
+            dispatch(getAllGames())
             push("/home")
         }
     }
@@ -77,7 +79,7 @@ export default function CreateGame() {
                             <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Short description" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
-                            <input className={style.input} type="text" name="img" value={img} required onChange={handleChange} placeholder="Image url..." />
+                            <input className={style.input} type="url"  pattern="https?://.+" name="img" value={img} required onChange={handleChange} placeholder="Image url..." />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
                             <input className={style.input} type="date" name="released" value={released} required onChange={handleChange} placeholder="Release Date" />

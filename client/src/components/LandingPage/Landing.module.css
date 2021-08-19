@@ -1,13 +1,12 @@
 .content {
     opacity: 1;
-    background-image: url('https://images.unsplash.com/photo-1610041321327-b794c052db27?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80');
     background-size: cover;
     background-position: center 70%;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
 }
-
 .conTitle {
     background: rgba(241, 44, 192, 0.336);
     display: flex;
