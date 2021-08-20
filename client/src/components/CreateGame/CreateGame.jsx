@@ -13,7 +13,7 @@ export default function CreateGame() {
     const stateG = useSelector(state => state.genres)
     const dispatch = useDispatch()
     const { push } = useHistory()
-    const urlValidate = /(https?:\/\/)?([\w\])+{1}([a-zA-Z]{2,63})([\w-]*)*\/?\??([^#\n\r]*)?#?([^\n\r]*)/;
+    const urlRegEXP = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!]))?/;
     useEffect(() => {
         dispatch(getGenres())
         dispatch(getPlatforms())
@@ -28,15 +28,23 @@ export default function CreateGame() {
     const [genres, setGenres] = useState([]);
 
     function handleSubmit(e) {
+        console.log("platforms: ",platforms);
         e.preventDefault();
         if (name === '') return alert('Name is required');
         if (description === '') return alert('Description is required');
         if (img === '') return alert('Url image is required');
-        if (!urlValidate.test(img)) return alert('Image it most be an URL');
+        if (!urlRegEXP.test(img)) return alert('Image it most be an URL');
         if (released === '') return alert('Release date is required');
         if (platforms.length === 0) return alert('You most select at least one platform');
-        if (genres.length === 0) return alert('You most select at least one genre');
+        /* if (e.target.name.genres.length > 0) { 
+            console.log("e.target.genres",e.target.genres)
+            let validCheck= e.target.genres.filter(e=> e.checked === true);
+            validCheck.map(e=> e.value);
+            setGenres([...genres, validCheck]);
+        } */
+        if (genres.length === 0) { return alert('You most select at least one genre'); }
         else {
+            console.log(genres)
             let body = { name, description, img, released, rating, platforms, genres }
             dispatch(addGame(body))
             alert('Your videogame was created!')
@@ -52,13 +60,31 @@ export default function CreateGame() {
             case 'img': setImg(e.target.value); break;
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
-            case 'platforms': setPlatforms(platforms.concat(" ", e.target.value)); break;
-            /*          case 'platforms': setPlatforms([...platforms, e.target.value]); break; */
-            case 'genres':
-                setGenres([...genres, e.target.value]);
-                console.log(genres)
+            case 'platforms': 
+            let validPlat = document.getElementsByName("platforms");
+            let pos = " ";
 
-                break;
+            for (let i = 0; i < validPlat.length; i++) {
+                if (validPlat[i].checked) {
+                    console.log("validPlat[i].value",validPlat[i].value)
+                    pos += validPlat[i].value + ", ";
+                }
+
+            }
+            setPlatforms(pos); break;
+            
+            //setPlatforms(platforms.concat(" ", e.target.value)); break;
+            case 'genres':
+                let validcheckbox = document.getElementsByName("genres");
+                let res = [];
+
+                for (let i = 0; i < validcheckbox.length; i++) {
+                    if (validcheckbox[i].checked) {
+                        res.push(validcheckbox[i].value);
+                    }
+
+                }
+                setGenres([...res]); break;
             default: break
         }
     }
@@ -66,7 +92,9 @@ export default function CreateGame() {
     return (
         <div className={style.bigDiv}>
             <div className={style.searchBar}>
-                <img src={logo} alt="logo" width="64px" height="60px" />
+                <Link to="/"><span>
+                    <img src={logo} alt="logo" width="64px" height="60px" />
+                </span></Link>
             </div>
             <div className={style.global}>
                 <div className={`${style.container} ${style.center}`}>
@@ -79,7 +107,7 @@ export default function CreateGame() {
                             <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Short description" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
-                            <input className={style.input} type="url"  pattern="https?://.+" name="img" value={img} required onChange={handleChange} placeholder="Image url..." />
+                            <input className={style.input} type="url" pattern="https?://.+" name="img" value={img} required onChange={handleChange} placeholder="Image url..." />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`}>
                             <input className={style.input} type="date" name="released" value={released} required onChange={handleChange} placeholder="Release Date" />

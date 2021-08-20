@@ -94,7 +94,7 @@ export default function Home() {
                 </div>
 
                 
-                {/* //other version the paginate with pages
+{/*                 //other version the paginate with pages
                  <Paginado
                 gamesPerPage ={gamesPerPage}
                 stateV = {showGames.length}
@@ -127,7 +127,7 @@ export default function Home() {
                                 : null
                             }
                             <p className={style.page}>{page}</p>
-                            {page < 7 ?
+                            {page < showGames.length ?
                                 <button className={style.btn} onClick={(e) => handlePage(e)} name="next">
                                     Next
                                 </button>

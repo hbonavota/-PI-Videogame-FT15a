@@ -6,7 +6,7 @@ const { API_KEY } = require("../utils/config/index.js")
 
 async function getVideogames(req, res, next) {
   /*
-      https://api.rawg.io/api/games?key=5c0e3ef77f9c4ae6be8a2abd71f21285
+      https://api.rawg.io/api/games?
     GET /videogames:
         Obtener un listado de los videojuegos
         Debe devolver solo los datos necesarios para la ruta principal
