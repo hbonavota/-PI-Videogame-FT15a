@@ -28,7 +28,6 @@ export default function CreateGame() {
     const [genres, setGenres] = useState([]);
 
     function handleSubmit(e) {
-        console.log("platforms: ",platforms);
         e.preventDefault();
         if (name === '') return alert('Name is required');
         if (description === '') return alert('Description is required');
@@ -36,15 +35,8 @@ export default function CreateGame() {
         if (!urlRegEXP.test(img)) return alert('Image it most be an URL');
         if (released === '') return alert('Release date is required');
         if (platforms.length === 0) return alert('You most select at least one platform');
-        /* if (e.target.name.genres.length > 0) { 
-            console.log("e.target.genres",e.target.genres)
-            let validCheck= e.target.genres.filter(e=> e.checked === true);
-            validCheck.map(e=> e.value);
-            setGenres([...genres, validCheck]);
-        } */
         if (genres.length === 0) { return alert('You most select at least one genre'); }
         else {
-            console.log(genres)
             let body = { name, description, img, released, rating, platforms, genres }
             dispatch(addGame(body))
             alert('Your videogame was created!')
@@ -60,20 +52,17 @@ export default function CreateGame() {
             case 'img': setImg(e.target.value); break;
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
-            case 'platforms': 
-            let validPlat = document.getElementsByName("platforms");
-            let pos = " ";
+            case 'platforms':
+                let validPlat = document.getElementsByName("platforms");
+                let pos = " ";
 
-            for (let i = 0; i < validPlat.length; i++) {
-                if (validPlat[i].checked) {
-                    console.log("validPlat[i].value",validPlat[i].value)
-                    pos += validPlat[i].value + ", ";
+                for (let i = 0; i < validPlat.length; i++) {
+                    if (validPlat[i].checked) {
+                        pos += validPlat[i].value + ", ";
+                    }
+
                 }
-
-            }
-            setPlatforms(pos); break;
-            
-            //setPlatforms(platforms.concat(" ", e.target.value)); break;
+                setPlatforms(pos); break;
             case 'genres':
                 let validcheckbox = document.getElementsByName("genres");
                 let res = [];
