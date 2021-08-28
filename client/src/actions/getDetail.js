@@ -11,16 +11,17 @@ export const getGameById = (id) => {
     return (dispatch) => {
         return axios.get(`http://Localhost:3001/videogame/${id}`)
         .then(videogame => {
+            let api= videogame.data;
             if(id.includes("-")){
                 let obj = {
-                    id: videogame.data.id,
-                    name: videogame.data.name,
-                    description: videogame.data.description,
-                    img: videogame.data.img,
-                    released: videogame.data.released,
-                    rating: videogame.data.rating,
-                    platforms: videogame.data.platforms,
-                    genres: videogame.data.genres.map(e=> e.name+ " ,")
+                    id: api.id,
+                    name: api.name,
+                    description: api.description,
+                    img: api.img,
+                    released: api.released,
+                    rating: api.rating,
+                    platforms: api.platforms,
+                    genres: api.genres.map(e=> e.name+ " ,")
                 }
                 return dispatch(getDetail(obj))
             }else{

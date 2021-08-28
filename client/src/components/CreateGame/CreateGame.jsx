@@ -53,27 +53,15 @@ export default function CreateGame() {
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
             case 'platforms':
-                let validPlat = document.getElementsByName("platforms");
-                let pos = " ";
-
-                for (let i = 0; i < validPlat.length; i++) {
-                    if (validPlat[i].checked) {
-                        pos += validPlat[i].value + ", ";
-                    }
-
-                }
-                setPlatforms(pos); break;
+                let platformsBox = document.getElementsByName("platforms");
+                let paltformsCheked = " ";
+                platformsBox.forEach((elem)=> elem.checked? paltformsCheked += elem.value + "," : null)
+                setPlatforms(paltformsCheked); break;
             case 'genres':
-                let validcheckbox = document.getElementsByName("genres");
-                let res = [];
-
-                for (let i = 0; i < validcheckbox.length; i++) {
-                    if (validcheckbox[i].checked) {
-                        res.push(validcheckbox[i].value);
-                    }
-
-                }
-                setGenres([...res]); break;
+                let genresBox = document.getElementsByName("genres");
+                let genresCheked = [];
+                genresBox.forEach((i)=> i.checked? genresCheked.push(i.value): null)
+                setGenres([...genresCheked]); break;
             default: break
         }
     }

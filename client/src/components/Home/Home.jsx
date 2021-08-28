@@ -10,7 +10,7 @@ import FilterOptions from '../Filters/Filters';
 import { filterByGenres } from '../../actions/order&filters';
 import { loading } from '../../actions/getByName';
 import style from '../Home/Home.module.css'
-//other version the paginate with pages
+//other version the paginate with pages number of pages
 //import Paginado from '../Paginado/Paginado.jsx';
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     const dispatch = useDispatch()
     const [page, setPage] = useState(1);
 
-    //other version the paginate with pages
+    //other version the paginate with number of pages
 /*         const [CurrentPage, setCurrentPage] = useState(1);
         const [gamesPerPage, setgamesPerPage] = useState(15);
         const iOfLastGames = CurrentPage * gamesPerPage;
@@ -94,7 +94,7 @@ export default function Home() {
                 </div>
 
                 
-{/*                 //other version the paginate with pages
+{/*                 //other version the paginate with number of pages
                  <Paginado
                 gamesPerPage ={gamesPerPage}
                 stateV = {showGames.length}
