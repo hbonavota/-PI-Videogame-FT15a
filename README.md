@@ -238,7 +238,7 @@ ___
 
 + Page de Creación de Juegos 
 
-<div align="center"><img  src="./img/createGame.png" /> </div>
+<div align="center"><img  src="./img/createGame.PNG" /> </div>
 
 + Detalle de los Juegos
 
