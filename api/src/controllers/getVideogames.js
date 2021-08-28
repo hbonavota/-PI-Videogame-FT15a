@@ -34,10 +34,8 @@ async function getVideogames(req, res, next) {
         rating: e.rating,
         platforms: e.platforms ? e.platforms.map(p => p.platform.name) : null,
         genres: e.genres,
-        //? e.genres.map(elem => elem.name) : null,
       }
-    )
-    )
+    ))
   }
   // if have any name from query. Enter in the if
   if (name) {
@@ -63,10 +61,6 @@ async function getVideogames(req, res, next) {
             res.status(404).send("There arent any videogame with that name, please try again");
           }
         })
-      /* .catch((error) => {
-        next(error);
-        //res.status(404).send("There arent any videogame with that name, please try again")
-      }) */
 
     } catch (error) {
       next(error);
@@ -91,7 +85,6 @@ async function getVideogames(req, res, next) {
         })
     } catch (error) {
       next(error);
-      //res.status(404).send("There arent any videogame with that name, please try again");
     }
   }
 }

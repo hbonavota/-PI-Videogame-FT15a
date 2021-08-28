@@ -27,12 +27,6 @@ async function getGenres(req, res, next) {
         }
       })
     }
-    /* for (let i = 0; i < resconcat.length; i++) {
-      await Genre.findOrCreate({
-        where: {name:response[i]}
-      })    
-    }
-     */
 
     //make the consult again and response
     let allGenres = await Genre.findAll();
