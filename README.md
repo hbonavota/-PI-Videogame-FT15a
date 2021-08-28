@@ -214,7 +214,7 @@ npm start
 
 ```
 
-+ Deberias visualizar la ejecución correctamente. Se abrirá una ventana en tu Browser ejecutándose en el puerto  3000 el Front y en el 3001 el backed y en la terminal veras el mensaje de conexión correcta.
++ Deberias visualizar la ejecución correctamente. Se abrirá una ventana en tu Browser ejecutándose en el puerto  3000 el Front y en el 3001 el backend y en la terminal veras el mensaje de conexión correcta.
 
 <div align="center"><img  src="./img/api_.png" /> </div>
 <div align="center"><img  src="./img/client_.png" /> </div>
