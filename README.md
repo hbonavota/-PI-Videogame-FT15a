@@ -4,11 +4,13 @@
 
 # Individual Project - Henry Videogames
 
-<p align="right">
+<p align="center">
   <img height="200" src="./videogame.png" />
 </p>
 
-## Objetivos del Proyecto
+
+<p>Henry Videogames fue el proyecto que tuve asignado en la que constaba en construir una App en un periodo de 3 semanas como deadline, utilizando las tecnologias aprendidas entre ellas React, Redux, Sequelize, Sqlite, postgresql El objetivo de este proyecto era construir una App utilizando</p>
+## Objetivos del Proyecto Asignado
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
 - Afirmar y conectar los conceptos aprendidos en la carrera.
@@ -20,29 +22,17 @@
 
 El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
 
-## Comenzando
-
- 1. Forkear el repositorio para tener una copia del mismo en sus cuentas
- 2. Clonar el repositorio en sus computadoras para comenzar a trabajar
-
-Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
-
-__IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
+## Requerimientos
 
 Actualmente las versiónes necesarias son:
 
  * __Node__: 12.18.3 o mayor
  * __NPM__: 6.14.16 o mayor
 
-Para verificar que versión tienen instalada:
 
-> node -v
->
-> npm -v
+## Indicaciones
 
-## BoilerPlate
 
-El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas estará el código del back-end y el front-end respectivamente.
 
 En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
@@ -58,7 +48,7 @@ Adicionalmente será necesario que creen desde psql una base de datos llamada `v
 
 El contenido de `client` fue creado usando: Create React App.
 
-## Enunciado
+## Enunciado Pedido
 
 La idea general es crear una aplicación en la cual se puedan ver los distintos videojuegos disponibles junto con información relevante de los mismos utilizando la api externa [rawg](https://rawg.io/apidocs) y a partir de ella poder, entre otras cosas:
 
