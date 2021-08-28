@@ -1,6 +1,6 @@
 # Individual Project - Videogames
 
-<div align="center"><img height="200" src="./videogame.png" /> </div>
+<div align="center"><img height="200" src="./img/videogame.png" /> </div>
 <h1></h1>
 
 ___
@@ -140,34 +140,104 @@ El proyecto tendrá una duración máxima de tres semanas.
 
 ___
 ___
+# Testing
+
+Indicaciones para Testing:
+
+- [ ] Al menos tener un componente del frontend con sus tests respectivos
+- [ ] Al menos tener una ruta del backend con sus tests respectivos
+- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+___
+___
 # Indicaciones para ejecutar el proyecto
 
-Para poder ejecutar el proyecto correctamente deberán tener en cuenta las siguientes indicaciones.
+Para poder ejecutar el proyecto correctamente deberán tener en cuenta las siguientes indicaciones. Si tienes alguna consulta o duda con la instalación puedes escribirme sin problema --> [aqui](hbonavota@gmail.com)
+
+## Instalación
+
++ Hacer Fork al repositorio 
+
+<div align="center"><img  height="141" width="1222" src="./img/Fork.png" /> </div>
+
++ Puedes descargar el zip o clonarlo en tu Pc, si eliges clonarlo simplemente te paras en tu carpeta y con la terminal clonas el repositorio. Ejemplo:
+<div align="center"><img  height="490" width="397"src="./img/clone.png" /> </div>
+
+```
+Git clone https://github.com/hbonavota/-PI-Videogame-FT15a.git
+```  
 
 + En la carpeta `/api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
+<div align="center"><img  height="828" width="646"src="./img/env.png" /> </div>
+
+
++ Para Crear la ApiKey  tienen que ingresar a la página de rawg, es gratuita, no demora más de 10min crear una Apikey. Click aqui para crearla --> [rawg](https://rawg.io/apidocs)
+
++ Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres.
+Si no tienes postgresql tienes que descargarlo aqui --> . [Postgresql](https://www.postgresql.org/download/)
 ```
 DB_USER=usuariodepostgres
 DB_PASSWORD=passwordDePostgres
 DB_HOST=localhost
 DB_PORT=3001
-API_KEY= 
+API_KEY= ApiKey
 ```
 
-+ Para Crear la Api Key  tienen que ingresar a la página, es gratuita, no demora más de 10min. click aqui --> [rawg](https://rawg.io/apidocs)
 
-+ Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. 
++ Adicionalmente es necesario que creen desde psql una base de datos llamada `videogames`. El comando dentro de la terminal de psql es :
 
-Adicionalmente es necesario que creen desde psql una base de datos llamada `videogames` el comando dentro de la terminal es :
 
 ```
 CREATE DATABASE videogames;
 
 ```
++ Siguiendo los pasos hasta aquí debería estar todo correcto, faltaría solo instalar las dependencias. Por último tienes que situarte en la carpeta /api y realizar el npm install y repetir el mismo proceso en /client
+
+```
+/PI-Videogames/api (main)
+npm i
+
+/PI-Videogames/client (main)
+npm i
+
+```
 
 
-#### Testing
++ Finalmente, al ejecutar los procesos 
 
-- [ ] Al menos tener un componente del frontend con sus tests respectivos
-- [ ] Al menos tener una ruta del backend con sus tests respectivos
-- [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+```
+/PI-Videogames/api (main)
+npm start
+
+/PI-Videogames/client (main)
+npm start
+
+```
+
++ Deberias visualizar la ejecución correctamente. Se abrirá una ventana en tu Browser ejecutándose en el puerto  3000 el Front y en el 3001 el backed y en la terminal veras el mensaje de conexión correcta.
+
+<div align="center"><img  src="./img/api_.png" /> </div>
+<div align="center"><img  src="./img/client_.png" /> </div>
+
+___
+___
+# Preview
+
++ LandingPage
+<div align="center"><img  src="./img/landing.png" /> </div>
+
++ Loading visible por 746.063 milisegundos hasta la carga de Videojuegos
+
+<div align="center"><img  src="./img/loading.png" /> </div>
+
++ Home
+
+<div align="center"><img  src="./img/home.png" /> </div>
+
++ Page de Creación de Juegos 
+
+<div align="center"><img  src="./img/createGame.png" /> </div>
+
++ Detalle de los Juegos
+
+<div align="center"><img  src="./img/detail.png" /> </div>
