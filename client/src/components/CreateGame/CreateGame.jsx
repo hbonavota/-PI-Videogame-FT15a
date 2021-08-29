@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { getAllGames } from '../../actions/getVideogames';
+
 import addGame from '../../actions/addGame'
 import getGenres from '../../actions/getGenres'
 import getPlatforms from '../../actions/getPlatforms'
+import swal from 'sweetalert';
 import style from './CreateGame.module.css'
 import logo from '../NavBar/pic.png'
 
@@ -39,7 +41,13 @@ export default function CreateGame() {
         else {
             let body = { name, description, img, released, rating, platforms, genres }
             dispatch(addGame(body))
-            alert('Your videogame was created!')
+            swal({
+                title: "¡God Job!", 
+                text:"Your videogame was created!",
+                icon: "success",
+                button: "OK!",
+                timer: 2500
+              })
             dispatch(getAllGames())
             push("/home")
         }

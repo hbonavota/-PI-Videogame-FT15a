@@ -240,6 +240,8 @@ ___
 
 <div align="center"><img  src="./img/createGame.PNG" /> </div>
 
+<div align="center"><img  src="./img/godJob.png" /> </div>
+
 + Detalle de los Juegos
 
 <div align="center"><img  src="./img/detail.png" /> </div>
