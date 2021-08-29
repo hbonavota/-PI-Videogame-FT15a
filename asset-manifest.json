@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/-PI-Videogame-FT15a/static/css/main.d201fc58.chunk.css",
+    "main.js": "/-PI-Videogame-FT15a/static/js/main.f199cc05.chunk.js",
+    "main.js.map": "/-PI-Videogame-FT15a/static/js/main.f199cc05.chunk.js.map",
+    "runtime-main.js": "/-PI-Videogame-FT15a/static/js/runtime-main.1e6b3354.js",
+    "runtime-main.js.map": "/-PI-Videogame-FT15a/static/js/runtime-main.1e6b3354.js.map",
+    "static/js/2.9497646d.chunk.js": "/-PI-Videogame-FT15a/static/js/2.9497646d.chunk.js",
+    "static/js/2.9497646d.chunk.js.map": "/-PI-Videogame-FT15a/static/js/2.9497646d.chunk.js.map",
+    "static/js/3.2aab09dd.chunk.js": "/-PI-Videogame-FT15a/static/js/3.2aab09dd.chunk.js",
+    "static/js/3.2aab09dd.chunk.js.map": "/-PI-Videogame-FT15a/static/js/3.2aab09dd.chunk.js.map",
+    "index.html": "/-PI-Videogame-FT15a/index.html",
+    "static/css/main.d201fc58.chunk.css.map": "/-PI-Videogame-FT15a/static/css/main.d201fc58.chunk.css.map",
+    "static/js/2.9497646d.chunk.js.LICENSE.txt": "/-PI-Videogame-FT15a/static/js/2.9497646d.chunk.js.LICENSE.txt",
+    "static/media/pic.db49a983.png": "/-PI-Videogame-FT15a/static/media/pic.db49a983.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1e6b3354.js",
+    "static/js/2.9497646d.chunk.js",
+    "static/css/main.d201fc58.chunk.css",
+    "static/js/main.f199cc05.chunk.js"
+  ]
+}
