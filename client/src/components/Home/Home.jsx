@@ -73,7 +73,9 @@ export default function Home() {
                     <NavBar />
                 </div>
                 <div className={style.grid_container}>
-                    <div className={style.grid_item1}><Orderby /></div>
+                    <div className={style.grid_item1}>
+                        <Orderby />
+                    </div>
                     <div className={style.grid_item2}>
                         <FilterOptions />
                     </div>

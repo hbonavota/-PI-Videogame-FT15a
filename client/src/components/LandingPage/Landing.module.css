@@ -1,18 +1,19 @@
 .content {
     opacity: 1;
-    background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80');
+    background-image: url('https://wallpaperaccess.com/full/2825826.gif');
     background-size: cover;
-    background-position: center 70%;
+    background-position: center 25%;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .conTitle {
-    background: rgba(241, 44, 192, 0.336);
+    background: #00002075;
     display: flex;
     flex-direction: column;
     margin-left: auto;
-    margin-top: 18%;
+    margin-top: 15%;
     justify-content: center;
     text-align: center;
     align-content: center;
@@ -21,7 +22,8 @@
 
 .title {
     font-size: 50px;
-    font-family: 'Audiowide', cursive;
+/*     font-family: 'Audiowide', cursive; */
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     align-content: center;
     position: relative;
@@ -30,16 +32,20 @@
     align-content: center;
     align-items: center;
     margin: unset;
+    color:#13FFFF;
 }
 
 .bt {
-    background: rgba(82, 118, 214, 0.5);
+
+    background:rgba(241, 22, 186, 0.5);
+    width: 200px;
+    height: 200px;
     padding: 15px 12px;
-    border-radius: 60px;
+    border-radius: 100px;
     text-align: center;
     display: inline-block;
-    font-size: 30px;
-    font-family: 'Impact';
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
     border: 1px solid;
     cursor: pointer;
     outline: none;
@@ -49,6 +55,9 @@
 }
 
 .bt:hover {
+    border-color: black;
+    border: 1px solid black;
     background-color: transparent;
-    color:rgba(241, 22, 186, 0.795);
+    background: rgba(82, 118, 214, 0.5);
+
 }

@@ -4,14 +4,19 @@
     justify-items: center;
     align-items: center;
     gap: 50px;
+    height: auto;
+    margin: 2px;
 }
 
 .back1 {
-    /* background-color: #2c3e50; */
+    background-image: url('https://blogdesuperheroes.es/wp-content/plugins/BdSGallery/BdSGaleria/70972.jpg');
+    background-color: #2c3e50;
     opacity: 1;
-    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
     background-size: cover;
     overflow: hidden;
+    background-position: center 70%;
+    width: 100vw;
+    height: auto;
 }
 
 .back2 {
@@ -25,9 +30,9 @@
 }
 
 .label {
-    font-size: 16px;
+    font-size: 15px;
     margin-bottom: 7px;
-    color: #34495e;
+    color: #799dc2;
 }
 
 .box_select {
@@ -53,6 +58,7 @@
 .grid_item1 {
     margin-right: 5%;
     margin-left: auto;
+    margin-top: auto;
 }
 
 .grid_item2 {

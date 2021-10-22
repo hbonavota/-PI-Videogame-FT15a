@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import Select from 'react-select'
 import { getAllGames } from '../../actions/getVideogames';
-
 import addGame from '../../actions/addGame'
 import getGenres from '../../actions/getGenres'
 import getPlatforms from '../../actions/getPlatforms'
@@ -28,6 +28,24 @@ export default function CreateGame() {
     const [released, setreleased] = useState('');
     const [platforms, setPlatforms] = useState("");
     const [genres, setGenres] = useState([]);
+    const optionsP = stateP.map((e) => {
+        let obj = {}
+        obj.value = e;
+        obj.label = e;
+        return obj;
+    }
+    )
+
+    const optionsG = stateG.map((e) => {
+        let obj = {}
+        obj.value = e.id;
+        obj.label = e.name;
+        return obj;
+    }
+    )
+
+    console.log("genres: ", genres)
+    console.log("platforms: ", platforms)
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -42,15 +60,24 @@ export default function CreateGame() {
             let body = { name, description, img, released, rating, platforms, genres }
             dispatch(addGame(body))
             swal({
-                title: "¡God Job!", 
-                text:"Your videogame was created!",
+                title: "¡God Job!",
+                text: "Your videogame was created!",
                 icon: "success",
                 button: "OK!",
                 timer: 2500
-              })
+            })
             dispatch(getAllGames())
             push("/home")
         }
+    }
+    function platformSelected(items) {
+        let selectedInStrings = items?.map(e => e.value)
+        setPlatforms(selectedInStrings.join())
+    }
+    function genresSelected(elem) {
+        let arraySelected = elem?.map(e => e.value)
+        console.log("arraySelected", arraySelected)
+        setGenres(arraySelected);
     }
 
     function handleChange(e) {
@@ -60,16 +87,6 @@ export default function CreateGame() {
             case 'img': setImg(e.target.value); break;
             case 'rating': setRating(e.target.value); break;
             case 'released': setreleased(e.target.value); break;
-            case 'platforms':
-                let platformsBox = document.getElementsByName("platforms");
-                let paltformsCheked = " ";
-                platformsBox.forEach((elem)=> elem.checked? paltformsCheked += elem.value + "," : null)
-                setPlatforms(paltformsCheked); break;
-            case 'genres':
-                let genresBox = document.getElementsByName("genres");
-                let genresCheked = [];
-                genresBox.forEach((i)=> i.checked? genresCheked.push(i.value): null)
-                setGenres([...genresCheked]); break;
             default: break
         }
     }
@@ -78,7 +95,7 @@ export default function CreateGame() {
         <div className={style.bigDiv}>
             <div className={style.searchBar}>
                 <Link to="/"><span>
-                    <img src={logo} alt="logo" width="64px" height="60px" />
+                    <img className={style.imgLogo} src={logo} alt="logo" width="64px" height="60px" />
                 </span></Link>
             </div>
             <div className={style.global}>
@@ -86,7 +103,7 @@ export default function CreateGame() {
                     <form onSubmit={(e) => handleSubmit(e)} className={style.form} autoComplete="off">
                         <div className={style.subtitle}>¡Let's create your videogame!</div>
                         <div className={`${style.input_container} ${style.ic1}`}>
-                            <input className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Write a name" />
+                            <input  className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Write a name" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`} >
                             <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Short description" />
@@ -103,42 +120,28 @@ export default function CreateGame() {
                     </form>
                 </div >
                 <div className={`${style.inputCheck} ${style.al} ${style.left}`}>
-                    <form>
-                        <h4 className={style.subtitlePlat}> Select Platforms</h4>
-                        {stateP.map((elem) => {
-                            return (
-                                <div key={elem.id} className={style.subtitlePlat}>
-                                    <input
-                                        type='checkbox'
-                                        name='platforms'
-                                        value={elem}
-                                        onChange={(e) => { handleChange(e) }}
-                                    />
-                                    <label name={elem}>{elem}</label>
-                                </div>
-                            )
-                        })}
-                    </form>
+                    <h4 className={style.subtitle}> Choose the Platforms</h4>
+                    <Select
+                        className={style.box_select}
+                        options={optionsP}
+                        isSearchable
+                        isMulti
+                        placeholder="Select any Platforms"
+                        onChange={(e) => { platformSelected(e) }}
+                    />
                 </div>
                 <div className={`${style.inputCheck} ${style.al} ${style.right}`}>
-                    <form>
-                        <h4 className={style.subtitleGenre}>Select Genres</h4>
-                        {stateG.map((el) => {
-                            return (
-                                <div className={style.subtitlePlat} key={el.id}>
-                                    <input
-                                        type='checkbox'
-                                        name='genres'
-                                        value={el.id}
-                                        onChange={(ele) => { handleChange(ele) }}
-                                    />
-                                    <label name={el}>{el.name}</label>
-                                </div>
-                            )
-                        })}
-                    </form>
+                    <h4 className={style.subtitle}>Choose the genres</h4>
+                    <Select
+                        className={style.box_select}
+                        options={optionsG}
+                        isSearchable
+                        isMulti
+                        placeholder="Select any Genres"
+                        onChange={(ele) => { genresSelected(ele) }}
+                    />
                 </div>
-                <input className={style.submit} onClick={handleSubmit} type="submit" value="Create game" />
+                <input className={style.submit} onClick={handleSubmit} type="submit" value="Create Game" />
             </div>
             <Link to="/Home">
                 <button className={style.back}>

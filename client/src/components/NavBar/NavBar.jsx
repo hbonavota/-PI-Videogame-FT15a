@@ -27,7 +27,7 @@ export default function NavBar() {
           <img src={logo} alt="logo" width="64px" height="60px" />
         </span></Link>
       </div>
-      <nav>
+      <nav className={styles.navSearch}>
         <Link to="/Home"><span>Home</span></Link>
         <form >
           <input
