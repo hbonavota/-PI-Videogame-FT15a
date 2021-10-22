@@ -103,7 +103,7 @@ export default function CreateGame() {
                     <form onSubmit={(e) => handleSubmit(e)} className={style.form} autoComplete="off">
                         <div className={style.subtitle}>¡Let's create your videogame!</div>
                         <div className={`${style.input_container} ${style.ic1}`}>
-                            <input className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Write a name" />
+                            <input  className={style.input} type="text" name="name" value={name} required onChange={handleChange} placeholder="Write a name" />
                         </div>
                         <div className={`${style.input_container} ${style.ic2}`} >
                             <input className={style.input} type="text" name="description" value={description} required onChange={handleChange} placeholder="Short description" />
@@ -120,7 +120,7 @@ export default function CreateGame() {
                     </form>
                 </div >
                 <div className={`${style.inputCheck} ${style.al} ${style.left}`}>
-                    <h4 className={style.subtitle}> Select Platforms</h4>
+                    <h4 className={style.subtitle}> Choose the Platforms</h4>
                     <Select
                         className={style.box_select}
                         options={optionsP}
@@ -131,7 +131,7 @@ export default function CreateGame() {
                     />
                 </div>
                 <div className={`${style.inputCheck} ${style.al} ${style.right}`}>
-                    <h4 className={style.subtitle}>Select Genres</h4>
+                    <h4 className={style.subtitle}>Choose the genres</h4>
                     <Select
                         className={style.box_select}
                         options={optionsG}
@@ -141,7 +141,7 @@ export default function CreateGame() {
                         onChange={(ele) => { genresSelected(ele) }}
                     />
                 </div>
-                <input className={style.submit} onClick={handleSubmit} type="submit" value="Create game" />
+                <input className={style.submit} onClick={handleSubmit} type="submit" value="Create Game" />
             </div>
             <Link to="/Home">
                 <button className={style.back}>

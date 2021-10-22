@@ -11,7 +11,7 @@
     background-color: #15172bcb;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 500px;
+    height: 650px;
     padding: 20px;
     width: 480px;
 }
@@ -25,6 +25,8 @@
 }
 
 .subtitle {
+    background-color: #15172bcb;
+    border-radius: 20px;
     color: #eee;
     font-family: sans-serif;
     font-size: 22px;
@@ -95,7 +97,8 @@
 }
 
 .submit {
-    background-color: #15172b;
+     
+    background-color: #4354d62a;
     border-radius: 20px;
     border: 0;
     box-sizing: unset;
@@ -104,13 +107,14 @@
     height: 50px;
     margin-bottom: 18px;
     margin-top: 65px;
-    margin-left: 406px;
+    margin-left: 350px;
     outline: 0;
-    width: 12%;
+    width: 25%;
+    margin-right: 350px;
 }
 
 .submit:hover {
-    background-color: #27213C;
+    background-color: #27213cad;
 }
 
 .inputCheck {
@@ -134,7 +138,7 @@
     /* background-color: black; */
     justify-content:center;
     align-items: center;
-    background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); 
+    background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=751&q=80');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -142,7 +146,11 @@
     padding-top: 45px;
     padding-left: 10px;
     padding-right: 10px;
-
+}
+@media screen and (max-width: 480px){
+    .global{
+        width: calc(100% - 80px);
+    }
 }
 /* padding-top: 45px; */
 
@@ -203,14 +211,15 @@
     border-radius: 8px;
     font-size: 0;
 /*     position:absolute; */
-    width: 100vh;
+/*     width: 100vh; */
 }
 
 .box_select {
     background-color: #15172b;
     color: #303245;
     padding: 5px;
-/*     width: 180px; */
+/*     width: 88%;
+    height: auto; */
     border: none;
     font-size: 15px;
     border-radius: 10px;
@@ -224,5 +233,10 @@
 .imgLogo{
     justify-content: center;
     align-items: center;
-    margin-right: 67px
+    margin-right: 50px
+}
+
+.error{
+    border: 1px solid red;
+    color: red;
 }
